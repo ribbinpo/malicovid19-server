@@ -7,8 +7,8 @@ const express = require("express")
 const app = express()
 //Setup Token line
 const config = {
-    channelAccessToken: 'ATZouV9RTeAMJ+svA6I4OQ9VjH5VmK/XeV8r25h9k9atDJSCzB65PgwHFFfSkwOX1DI37TxUzv6u22Kuflzxk7EhVyWUBJGZCTKyGr9k1WCfFSU22eMnP6eOTZC4hG1eiQGT2OzWF6H1dvgpdAEYYwdB04t89/1O/w1cDnyilFU=',
-    channelSecret: 'afbd031622710335553cf0fda66d8a66'
+    channelAccessToken: 'kdYOu6fshDXXaT4j6cDK4aJ+Tg2T0e6hq8xWiFfOj8oQt2wRql2fPflhLji0gopzKEX6dIjmXKRMKiEZYZySZ6Fqwwbqilt81AMYl16WAnbeWMpXd5NUoYKOACrIWCgXh85EukHWFHDgq8Gj2f0ldQdB04t89/1O/w1cDnyilFU=',
+    channelSecret: '5518701d26827b829df6a9efc47a3b3f'
 }
 // const config = {
 //     channelAccessToken: process.env.CHANNEL_ACCESS_TOKEN,
