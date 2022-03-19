@@ -138,7 +138,6 @@ const main = async (client) => {
 
 
 app.post('/callback',line.middleware(config),(req, res) => {
-  main(client)
   Promise
     .all(req.body.events.map(handleEvent))
     .then((result) => res.json(result))
@@ -146,6 +145,7 @@ app.post('/callback',line.middleware(config),(req, res) => {
       console.error(err);
       res.status(500).end();
     });
+  main(client)
 });
 
 // event handler
