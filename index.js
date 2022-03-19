@@ -140,13 +140,14 @@ const main = async (client) => {
 
 
 app.post('/callback',line.middleware(config),(req, res) => {
-  Promise
-    .all(req.body.events.map(handleEvent))
-    .then((result) => res.json(result))
-    .catch((err) => {
-      console.error(err);
-      res.status(500).end();
-    });
+  main(client)
+  // Promise
+  //   .all(req.body.events.map(handleEvent))
+  //   .then((result) => res.json(result))
+  //   .catch((err) => {
+  //     console.error(err);
+  //     res.status(500).end();
+  //   });
 });
 
 
@@ -163,8 +164,6 @@ function handleEvent(event) {
     // use reply API
     return client.replyMessage(event.replyToken, echo);
 }
-
-// main(client)
 
 
 const PORT = process.env.PORT || 3000
