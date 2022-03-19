@@ -48,7 +48,7 @@ const richMenuObjectA = () => ({
       },
       action: {
         type: "uri",
-        uri: "https://www.line-community.me/"
+        uri: "https://www.youtube.com/watch?v=7oybqUBqMhY"
         // type: 'text',
         // text: "Test"
       }
