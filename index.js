@@ -141,13 +141,13 @@ const main = async (client) => {
 
 app.post('/callback',line.middleware(config),(req, res) => {
   main(client)
-  // Promise
-  //   .all(req.body.events.map(handleEvent))
-  //   .then((result) => res.json(result))
-  //   .catch((err) => {
-  //     console.error(err);
-  //     res.status(500).end();
-  //   });
+  Promise
+    .all(req.body.events.map(handleEvent))
+    .then((result) => res.json(result))
+    .catch((err) => {
+      console.error(err);
+      res.status(500).end();
+    });
 });
 
 
