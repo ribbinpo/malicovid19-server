@@ -21,7 +21,7 @@ app.use(express.json())
 app.use(express.urlencoded({
     extended: true
 }))
-app.use(line.middleware(config))
+app.use("/callback",line.middleware(config))
 app.use(bodyParser.json())
 
 app.get("/",(req,res)=>{
