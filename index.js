@@ -21,7 +21,7 @@ app.use(express.json())
 app.use(express.urlencoded({
     extended: true
 }))
-app.use("/callback",line.middleware(config))
+// app.use("/callback",line.middleware(config))
 // app.use(bodyParser.json())
 
 app.get("/",(req,res)=>{
@@ -140,7 +140,7 @@ const client = new line.Client(config);
 // }
 
 
-app.post('/callback', (req, res) => {
+app.post('/callback',line.middleware(config),(req, res) => {
     Promise
       .all(req.body.events.map(handleEvent))
       .then((result) => res.json(result))
