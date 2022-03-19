@@ -162,7 +162,7 @@ function handleEvent(event) {
     return client.replyMessage(event.replyToken, echo);
 }
 
-main(client)
+// main(client)
 
 
 const PORT = process.env.PORT || 3000
