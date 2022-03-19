@@ -3,7 +3,7 @@
 const line = require('@line/bot-sdk');
 const { join } = require("path");
 const { readFileSync } = require("fs");
-const bodyParser = require('body-parser')
+// const bodyParser = require('body-parser')
 const express = require("express")
 const app = express()
 //Setup Token line
@@ -22,7 +22,7 @@ app.use(express.urlencoded({
     extended: true
 }))
 app.use("/callback",line.middleware(config))
-app.use(bodyParser.json())
+// app.use(bodyParser.json())
 
 app.get("/",(req,res)=>{
     console.log("path / success")
