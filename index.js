@@ -47,10 +47,10 @@ const richMenuObjectA = () => ({
         height: 1686
       },
       action: {
-        // type: "uri",
-        // uri: "https://www.line-community.me/"
-        type: 'text',
-        text: "Test"
+        type: "uri",
+        uri: "https://www.line-community.me/"
+        // type: 'text',
+        // text: "Test"
       }
     },
     {
