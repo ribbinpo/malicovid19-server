@@ -106,9 +106,9 @@ const richMenuObjectB = () => ({
   ]
 })
 
-const main = async (client) => {
+const main = (client) => {
   // 2. Create rich menu A (richmenu-a)
-  const richMenuAId = await client.createRichMenu(
+  const richMenuAId =  client.createRichMenu(
     richMenuObjectA()
   )
 
@@ -116,30 +116,31 @@ const main = async (client) => {
   const filepathA = join(__dirname, './public/richmenu-a.png')
   const bufferA = readFileSync(filepathA)
 
-  await client.setRichMenuImage(richMenuAId, bufferA)
+   client.setRichMenuImage(richMenuAId, bufferA)
 
   // 4. Create rich menu B (richmenu-b)
-  const richMenuBId = await client.createRichMenu(richMenuObjectB())
+  const richMenuBId =  client.createRichMenu(richMenuObjectB())
 
   // 5. Upload image to rich menu B
   const filepathB = join(__dirname, './public/richmenu-a.png')
   const bufferB = readFileSync(filepathB);
 
-  await client.setRichMenuImage(richMenuBId, bufferB);
+   client.setRichMenuImage(richMenuBId, bufferB);
 
   // 6. Set rich menu A as the default rich menu
-  await client.setDefaultRichMenu(richMenuAId)
+   client.setDefaultRichMenu(richMenuAId)
 
   // 7. Create rich menu alias A
-  await client.createRichMenuAlias(richMenuAId, 'richmenu-alias-a')
+   client.createRichMenuAlias(richMenuAId, 'richmenu-alias-a')
 
   // 8. Create rich menu alias B
-  await client.createRichMenuAlias(richMenuBId, 'richmenu-alias-b')
+   client.createRichMenuAlias(richMenuBId, 'richmenu-alias-b')
   console.log('success')
 }
 
 
 app.post('/callback',line.middleware(config),(req, res) => {
+  main(client)
   Promise
     .all(req.body.events.map(handleEvent))
     .then((result) => res.json(result))
@@ -154,7 +155,6 @@ app.post('/callback',line.middleware(config),(req, res) => {
 function handleEvent(event) {
   if (event.type !== 'message' || event.message.type !== 'text') {
     // ignore non-text-message event
-    main(client)
     return Promise.resolve(null);
   }else if(event.type == 'message' || event.message.type == 'text'){
         // create a echoing text message
