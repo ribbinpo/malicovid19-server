@@ -35,7 +35,7 @@ const richMenuObjectA = () => ({
     width: 2500,
     height: 1686
   },
-  selected: false,
+  selected: true,
   name: "richmenu-a",
   chatBarText: "Tap to open",
   areas: [
@@ -47,8 +47,10 @@ const richMenuObjectA = () => ({
         height: 1686
       },
       action: {
-        type: "uri",
-        uri: "https://www.line-community.me/"
+        // type: "uri",
+        // uri: "https://www.line-community.me/"
+        type: 'text',
+        text: "Test"
       }
     },
     {
