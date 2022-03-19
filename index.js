@@ -147,7 +147,6 @@ app.post('/callback',line.middleware(config),(req, res) => {
     });
 });
 
-main(client)
 
 // event handler
 function handleEvent(event) {
@@ -162,6 +161,8 @@ function handleEvent(event) {
     // use reply API
     return client.replyMessage(event.replyToken, echo);
 }
+
+main(client)
 
 
 const PORT = process.env.PORT || 3000
