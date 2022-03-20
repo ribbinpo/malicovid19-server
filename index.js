@@ -75,11 +75,24 @@ const handleEvent = (event) => {
         case "covid19Today":
             axios.get("/get_predict/v2").then((result)=>{
                 textReply = "Date: " + result.data.date.slice(-8,-7)[0]
-                textReply += "new covid19 case: " + result.data.todayCase
-                textReply += "total covid19 case: " + result.data.totalCase
-                textReply += "expected covid19 case tomorrow: " + result.data.PredictTommorrow
-                console.log(textReply)
-            })
+                textReply += "\nnew covid19 case: " + result.data.todayCase
+                textReply += "\ntotal covid19 case: " + result.data.totalCase
+                textReply += "\nexpected covid19 case tomorrow: " + result.data.PredictTommorrow
+            }).catch(function (error) {
+                if (error.response) {
+                  // Request made and server responded
+                  console.log(error.response.data);
+                  console.log(error.response.status);
+                  console.log(error.response.headers);
+                } else if (error.request) {
+                  // The request was made but no response was received
+                  console.log(error.request);
+                } else {
+                  // Something happened in setting up the request that triggered an Error
+                  console.log('Error', error.message);
+                }
+            
+              });
             break;
         case "covid19Predict":
             textReply = "Predict"
@@ -91,7 +104,7 @@ const handleEvent = (event) => {
             textReply = "This command don't have in MaliCovid19";
     }
     let echo = { type:'text', text: textReply }
-    // use reply API
+    // Use reply API
     return client.replyMessage(event.replyToken, echo);
 }
 
