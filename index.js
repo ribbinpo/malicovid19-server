@@ -74,14 +74,12 @@ const handleEvent = (event) => {
     switch(message){
         case "covid19Today":
             axios.get("/get_predict/v2").then((result)=>{
-                // textReply = "Date: " + result.data.date.slice(-8,-7)[0]
-                // textReply += "\n new covid19 case:" + result.data.todayCase
-                // textReply += "\n total covid19 case:" + result.data.totalCase
-                // textReply += "\n expected covid19 case tomorrow:" + result.data.PredictTommorrow
-                console.log(result.data)
-            }).catch((error) => {
-                console.log(error)
-            });
+                textReply = "Date: " + result.data.date.slice(-8,-7)[0]
+                textReply += "\n new covid19 case:" + result.data.todayCase
+                textReply += "\n total covid19 case:" + result.data.totalCase
+                textReply += "\n expected covid19 case tomorrow:" + result.data.PredictTommorrow
+                console.log(textReply)
+            })
             break;
         case "covid19Predict":
             textReply = "Predict";
