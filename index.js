@@ -75,17 +75,17 @@ const handleEvent = (event) => {
         case "covid19Today":
             axios.get("/get_predict/v2").then((result)=>{
                 textReply = "Date: " + result.data.date.slice(-8,-7)[0]
-                textReply += "\n new covid19 case:" + result.data.todayCase
-                textReply += "\n total covid19 case:" + result.data.totalCase
-                textReply += "\n expected covid19 case tomorrow:" + result.data.PredictTommorrow
+                textReply += "new covid19 case: " + result.data.todayCase
+                textReply += "total covid19 case: " + result.data.totalCase
+                textReply += "expected covid19 case tomorrow: " + result.data.PredictTommorrow
                 console.log(textReply)
             })
             break;
         case "covid19Predict":
-            textReply = "Predict";
+            textReply = "Predict"
             break;
         case "report":
-            textReply = "report";
+            textReply = "report"
             break;
         default:
             textReply = "This command don't have in MaliCovid19";
