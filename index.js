@@ -78,7 +78,9 @@ const handleEvent = (event) => {
                 textReply += "\n new covid19 case:" + result.data.todayCase
                 textReply += "\n total covid19 case:" + result.data.totalCase
                 textReply += "\n expected covid19 case tomorrow:" + result.data.PredictTommorrow
-            })
+            }).catch((error) => {
+                console.log(error)
+            });
             break;
         case "covid19Predict":
             textReply = "Predict";
