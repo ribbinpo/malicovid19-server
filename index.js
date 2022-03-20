@@ -48,8 +48,7 @@ const handleEvent = (event) => {
     // covid19Predict
     // report-menu
     // const echo = { type: 'text', text: event.message.text };
-    message = event.message.text
-    switch(message){
+    switch(event.message.text){
         case "covid19Today":
             textReply = "Today";
             break;
@@ -61,7 +60,6 @@ const handleEvent = (event) => {
             break;
         default:
             textReply = "This command don't have in MaliCovid19";
-            break;
     }
     let echo = { type:'text', text: textReply }
     // use reply API
