@@ -28,6 +28,8 @@ app.get("/",(req,res)=>{
 
 // create LINE SDK client
 const client = new line.Client(config);
+
+
 app.post('/callback',line.middleware(config),(req, res) => {
   Promise
     .all(req.body.events.map(handleEvent))
@@ -38,35 +40,22 @@ app.post('/callback',line.middleware(config),(req, res) => {
     });
 });
 
+
 // event handler
-const handleEvent = (event) => {
-    if (event.type !== 'message' || event.message.type !== 'text') {
+function handleEvent(event) {
+  if (event.type !== 'message' || event.message.type !== 'text') {
     // ignore non-text-message event
     return Promise.resolve(null);
-    }
-    // covid19Today
-    // covid19Predict
-    // report-menu
-    // const echo = { type: 'text', text: event.message.text };
-    message = event.message.text
-    switch(message){
-        case "covid19Today":
-            textReply = "Today"
-            break
-        case "covid19Predict":
-            textReply = "Predict"
-            break
-        case "report":
-            textReply = "report"
-            break
-        default:
-            textReply = "This command don't have in MaliCovid19"
-            break
-    }
-    const echo = {type:'text',text:textReply}
-    // use reply API
-    return client.replyMessage(event.replyToken, echo);
+  }else if(event.type == 'message' || event.message.type == 'text'){
+        // create a echoing text message
+  const echo = { type: 'text', text: event.message.text };
+
+  // use reply API
+  return client.replyMessage(event.replyToken, echo);
+  } 
 }
+
+
 
 const PORT = process.env.PORT || 3000
 app.listen(PORT, () => {
