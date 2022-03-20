@@ -2,6 +2,8 @@
 'use strict';
 // ngrok
 const line = require('@line/bot-sdk');
+const axios = require("axios");
+const { text } = require('body-parser');
 const express = require("express")
 const app = express()
 //Setup Token line
@@ -13,6 +15,9 @@ const config = {
 //     channelAccessToken: process.env.CHANNEL_ACCESS_TOKEN,
 //     channelSecret: process.env.CHANNEL_SECRET,
 // };
+axios.defaults.baseURL = 'https://line-pcord.herokuapp.com/';
+// axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;
+// axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 
 //pre-defined middleware
 // app.use(express.json())
@@ -24,7 +29,23 @@ app.get("/",(req,res)=>{
     console.log("path / success")
     res.sendStatus(200)
 })
-
+//Test
+// app.get("/get_data",(req,res)=>{
+//     axios.get("/get_predict/v2").then((result)=>{
+//         console.log(result.data.date.slice(-7))
+//         console.log(result.data.predict.slice(-7))
+//         console.log(result.data.todayCase)
+//         console.log(result.data.PredictTommorrow)
+//         console.log(result.data.totalCase)
+//         console.log(result.data.date.slice(-8,-7)[0])
+//         let textReply = "Date: " + result.data.date.slice(-8,-7)[0]
+//         textReply += "\n new covid19 case:" + result.data.todayCase
+//         textReply += "\n total covid19 case:" + result.data.totalCase
+//         textReply += "\n expected covid19 case tomorrow:" + result.data.PredictTommorrow
+//         console.log(textReply)
+//         res.send(textReply)
+//     })
+// })
 
 // create LINE SDK client
 const client = new line.Client(config);
@@ -52,7 +73,12 @@ const handleEvent = (event) => {
     let textReply = ""
     switch(message){
         case "covid19Today":
-            textReply = "Today";
+            axios.get("/get_predict/v2").then((result)=>{
+                textReply = "Date: " + result.data.date.slice(-8,-7)[0]
+                textReply += "\n new covid19 case:" + result.data.todayCase
+                textReply += "\n total covid19 case:" + result.data.totalCase
+                textReply += "\n expected covid19 case tomorrow:" + result.data.PredictTommorrow
+            })
             break;
         case "covid19Predict":
             textReply = "Predict";

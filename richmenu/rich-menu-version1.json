@@ -16,7 +16,7 @@
           },
             "action":{
                 "type":"message",
-                "text":"Covid-19 Today"
+                "text":"covid19Today"
             }
         },           
         {
@@ -28,7 +28,7 @@
           },
         "action":{
                 "type":"message",
-                "text":"Predict"
+                "text":"covid19Predict"
             }
         },
         {
@@ -52,7 +52,7 @@
         },
         "action":{
                 "type":"message",
-                "text":"Report"
+                "text":"report"
             }
         }
     ]

@@ -1,0 +1,22 @@
+>covid19Today
+วันที่ 2022-03-10
+ผู้ป่วยเข้าใหม่วันนี้: 548 เคส
+ผู้ป่วยปัจจุบันสะสม: 6744 เคส
+ผู้ป่วยคาดว่าจะเข้าพรุ่งนี้: 563 เคส
+
+>covid19Predict
+- option
+ tomorrow, 3 days 7 days, allchart
+ accuracy,number of case,show graph(Image) 
+
+>report
+- option or website
+ accuracy -send automatic(date and accuracy)
+ other -website
+
+Prediction data read from api using axios
+
+>Login -website
+ Login success -close website and change richmenu to profile menu.
+
+>website ->link to main dashboard
