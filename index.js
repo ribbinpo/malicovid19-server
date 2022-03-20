@@ -51,19 +51,19 @@ const handleEvent = (event) => {
     message = event.message.text
     switch(message){
         case "covid19Today":
-            textReply = "Today"
-            break
+            textReply = "Today";
+            break;
         case "covid19Predict":
-            textReply = "Predict"
-            break
+            textReply = "Predict";
+            break;
         case "report":
-            textReply = "report"
-            break
+            textReply = "report";
+            break;
         default:
-            textReply = "This command don't have in MaliCovid19"
-            break
+            textReply = "This command don't have in MaliCovid19";
+            break;
     }
-    const echo = {type:'text',text:textReply}
+    let echo = { type:'text', text: textReply }
     // use reply API
     return client.replyMessage(event.replyToken, echo);
 }
