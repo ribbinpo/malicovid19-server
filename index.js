@@ -48,7 +48,9 @@ const handleEvent = (event) => {
     // covid19Predict
     // report-menu
     // const echo = { type: 'text', text: event.message.text };
-    switch(event.message.text){
+    const message = event.message.text
+    let textReply = ""
+    switch(message){
         case "covid19Today":
             textReply = "Today";
             break;
