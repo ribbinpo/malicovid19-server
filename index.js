@@ -84,98 +84,99 @@ const handleEvent = (event) => {
             });
             break;
         case "covid19Predict":
-            return client.replyMessage(event.replyToken,{
-                "type": "bubble",
-                "direction": "ltr",
-                "header": {
-                  "type": "box",
-                  "layout": "vertical",
-                  "contents": [
-                    {
-                      "type": "text",
-                      "text": "Prediction",
-                      "weight": "bold",
-                      "size": "lg",
-                      "align": "center",
-                      "contents": []
-                    }
-                  ]
-                },
-                "body": {
-                  "type": "box",
-                  "layout": "vertical",
-                  "contents": [
-                    {
-                      "type": "text",
-                      "text": "Number of days to predict?",
-                      "align": "center",
-                      "contents": []
-                    }
-                  ]
-                },
-                "footer": {
-                  "type": "box",
-                  "layout": "horizontal",
-                  "contents": [
-                    {
+            return client.replyMessage(event.replyToken,
+                {type:"flex",contents:{
+                    "type": "bubble",
+                    "direction": "ltr",
+                    "header": {
                       "type": "box",
                       "layout": "vertical",
-                      "spacing": "xs",
+                      "contents": [
+                        {
+                          "type": "text",
+                          "text": "Prediction",
+                          "weight": "bold",
+                          "size": "lg",
+                          "align": "center",
+                          "contents": []
+                        }
+                      ]
+                    },
+                    "body": {
+                      "type": "box",
+                      "layout": "vertical",
+                      "contents": [
+                        {
+                          "type": "text",
+                          "text": "Number of days to predict?",
+                          "align": "center",
+                          "contents": []
+                        }
+                      ]
+                    },
+                    "footer": {
+                      "type": "box",
+                      "layout": "horizontal",
                       "contents": [
                         {
                           "type": "box",
-                          "layout": "horizontal",
+                          "layout": "vertical",
                           "spacing": "xs",
-                          "margin": "none",
                           "contents": [
                             {
-                              "type": "button",
-                              "action": {
-                                "type": "message",
-                                "label": "1 day",
-                                "text": ">predict1"
-                              },
-                              "color": "#30D591",
-                              "style": "primary"
+                              "type": "box",
+                              "layout": "horizontal",
+                              "spacing": "xs",
+                              "margin": "none",
+                              "contents": [
+                                {
+                                  "type": "button",
+                                  "action": {
+                                    "type": "message",
+                                    "label": "1 day",
+                                    "text": ">predict1"
+                                  },
+                                  "color": "#30D591",
+                                  "style": "primary"
+                                },
+                                {
+                                  "type": "button",
+                                  "action": {
+                                    "type": "message",
+                                    "label": "3 days",
+                                    "text": ">predict3"
+                                  },
+                                  "color": "#30D55A",
+                                  "style": "primary"
+                                },
+                                {
+                                  "type": "button",
+                                  "action": {
+                                    "type": "message",
+                                    "label": "7 days",
+                                    "text": ">predict7"
+                                  },
+                                  "color": "#30D5C8",
+                                  "style": "primary"
+                                }
+                              ]
                             },
                             {
                               "type": "button",
                               "action": {
                                 "type": "message",
-                                "label": "3 days",
-                                "text": ">predict3"
+                                "label": "Show All",
+                                "text": ">predictAll"
                               },
-                              "color": "#30D55A",
-                              "style": "primary"
-                            },
-                            {
-                              "type": "button",
-                              "action": {
-                                "type": "message",
-                                "label": "7 days",
-                                "text": ">predict7"
-                              },
-                              "color": "#30D5C8",
-                              "style": "primary"
+                              "color": "#30ABD5",
+                              "style": "primary",
+                              "gravity": "top"
                             }
                           ]
-                        },
-                        {
-                          "type": "button",
-                          "action": {
-                            "type": "message",
-                            "label": "Show All",
-                            "text": ">predictAll"
-                          },
-                          "color": "#30ABD5",
-                          "style": "primary",
-                          "gravity": "top"
                         }
                       ]
                     }
-                  ]
-                }
-              }
+                  }}
             );
         case "report":
             textReply = "report"
