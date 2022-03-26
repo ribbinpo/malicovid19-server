@@ -178,7 +178,7 @@ const handleEvent = (event) => {
                   ]
                 }
             }
-            break;
+            return client.replyMessage(event.replyToken, echo);
         case "report":
             textReply = "report"
             echo = { type:'text', text: textReply }
