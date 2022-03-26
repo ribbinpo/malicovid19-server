@@ -85,7 +85,10 @@ const handleEvent = (event) => {
             break;
         case "covid19Predict":
             return client.replyMessage(event.replyToken,
-                {type:"flex",contents:{
+                {
+                    type:"flex",
+                    altText: "This is a Flex message",
+                    contents:{
                     "type": "bubble",
                     "direction": "ltr",
                     "header": {
@@ -176,7 +179,8 @@ const handleEvent = (event) => {
                         }
                       ]
                     }
-                  }}
+                    }
+                }
             );
         case "report":
             textReply = "report"
