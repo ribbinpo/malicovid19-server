@@ -71,7 +71,6 @@ const handleEvent = (event) => {
     // const echo = { type: 'text', text: event.message.text };
     const message = event.message.text
     let textReply = ""
-    let echo;
     switch(message){
         case "covid19Today":
             axios.get("/get_predict/v2").then((result)=>{
@@ -85,110 +84,118 @@ const handleEvent = (event) => {
             });
             break;
         case "covid19Predict":
-            // textReply = "Predict"
-            echo = {
-                "type": "bubble",
-                "direction": "ltr",
-                "header": {
-                  "type": "box",
-                  "layout": "vertical",
-                  "contents": [
-                    {
-                      "type": "text",
-                      "text": "Prediction",
-                      "weight": "bold",
-                      "size": "lg",
-                      "align": "center",
-                      "contents": []
-                    }
-                  ]
-                },
-                "body": {
-                  "type": "box",
-                  "layout": "vertical",
-                  "contents": [
-                    {
-                      "type": "text",
-                      "text": "Number of days to predict?",
-                      "align": "center",
-                      "contents": []
-                    }
-                  ]
-                },
-                "footer": {
-                  "type": "box",
-                  "layout": "horizontal",
-                  "contents": [
-                    {
-                      "type": "box",
-                      "layout": "vertical",
-                      "spacing": "xs",
-                      "contents": [
-                        {
-                          "type": "box",
-                          "layout": "horizontal",
-                          "spacing": "xs",
-                          "margin": "none",
-                          "contents": [
-                            {
-                              "type": "button",
-                              "action": {
-                                "type": "message",
-                                "label": "1 day",
-                                "text": ">predict1"
-                              },
-                              "color": "#30D591",
-                              "style": "primary"
-                            },
-                            {
-                              "type": "button",
-                              "action": {
-                                "type": "message",
-                                "label": "3 days",
-                                "text": ">predict3"
-                              },
-                              "color": "#30D55A",
-                              "style": "primary"
-                            },
-                            {
-                              "type": "button",
-                              "action": {
-                                "type": "message",
-                                "label": "7 days",
-                                "text": ">predict7"
-                              },
-                              "color": "#30D5C8",
-                              "style": "primary"
-                            }
-                          ]
-                        },
-                        {
-                          "type": "button",
-                          "action": {
-                            "type": "message",
-                            "label": "Show All",
-                            "text": ">predictAll"
-                          },
-                          "color": "#30ABD5",
-                          "style": "primary",
-                          "gravity": "top"
-                        }
-                      ]
-                    }
-                  ]
-                }
-            }
-            return client.replyMessage(event.replyToken, echo);
+            // echo = {
+            //     "type": "bubble",
+            //     "direction": "ltr",
+            //     "header": {
+            //       "type": "box",
+            //       "layout": "vertical",
+            //       "contents": [
+            //         {
+            //           "type": "text",
+            //           "text": "Prediction",
+            //           "weight": "bold",
+            //           "size": "lg",
+            //           "align": "center",
+            //           "contents": []
+            //         }
+            //       ]
+            //     },
+            //     "body": {
+            //       "type": "box",
+            //       "layout": "vertical",
+            //       "contents": [
+            //         {
+            //           "type": "text",
+            //           "text": "Number of days to predict?",
+            //           "align": "center",
+            //           "contents": []
+            //         }
+            //       ]
+            //     },
+            //     "footer": {
+            //       "type": "box",
+            //       "layout": "horizontal",
+            //       "contents": [
+            //         {
+            //           "type": "box",
+            //           "layout": "vertical",
+            //           "spacing": "xs",
+            //           "contents": [
+            //             {
+            //               "type": "box",
+            //               "layout": "horizontal",
+            //               "spacing": "xs",
+            //               "margin": "none",
+            //               "contents": [
+            //                 {
+            //                   "type": "button",
+            //                   "action": {
+            //                     "type": "message",
+            //                     "label": "1 day",
+            //                     "text": ">predict1"
+            //                   },
+            //                   "color": "#30D591",
+            //                   "style": "primary"
+            //                 },
+            //                 {
+            //                   "type": "button",
+            //                   "action": {
+            //                     "type": "message",
+            //                     "label": "3 days",
+            //                     "text": ">predict3"
+            //                   },
+            //                   "color": "#30D55A",
+            //                   "style": "primary"
+            //                 },
+            //                 {
+            //                   "type": "button",
+            //                   "action": {
+            //                     "type": "message",
+            //                     "label": "7 days",
+            //                     "text": ">predict7"
+            //                   },
+            //                   "color": "#30D5C8",
+            //                   "style": "primary"
+            //                 }
+            //               ]
+            //             },
+            //             {
+            //               "type": "button",
+            //               "action": {
+            //                 "type": "message",
+            //                 "label": "Show All",
+            //                 "text": ">predictAll"
+            //               },
+            //               "color": "#30ABD5",
+            //               "style": "primary",
+            //               "gravity": "top"
+            //             }
+            //           ]
+            //         }
+            //       ]
+            //     }
+            // }
+            return client.replyMessage(event.replyToken,
+                {
+                    type: 'template',
+                    altText: 'Confirm alt text',
+                    template: {
+                      type: 'confirm',
+                      text: 'Do it?',
+                      actions: [
+                        { label: 'Yes', type: 'message', text: 'Yes!' },
+                        { label: 'No', type: 'message', text: 'No!' },
+                      ],
+                    },
+                });
         case "report":
             textReply = "report"
-            echo = { type:'text', text: textReply }
-            break;
+            return client.replyMessage(event.replyToken, { type:'text', text: textReply });
         default:
             textReply = "This command don't have in MaliCovid19"
-            echo = { type:'text', text: textReply }
+            return client.replyMessage(event.replyToken, { type:'text', text: textReply });
     }
-    // Use reply API
-    return client.replyMessage(event.replyToken, echo);
 }
 
 const PORT = process.env.PORT || 3000
