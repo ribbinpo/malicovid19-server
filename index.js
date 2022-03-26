@@ -175,7 +175,7 @@ const handleEvent = (event) => {
                     }
                   ]
                 }
-            }
+              }
             );
         case "report":
             textReply = "report"
