@@ -1,4 +1,3 @@
-
 'use strict';
 // ngrok
 const line = require('@line/bot-sdk');
@@ -72,7 +71,7 @@ const handleEvent = (event) => {
     const message = event.message.text
     let textReply = ""
     switch(message){
-        case "covid19Today":
+        case ">covid19Today":
             axios.get("/get_predict/v2").then((result)=>{
                 textReply = "Date: " + result.data.date.slice(-8,-7)[0]
                 textReply += "\nnew covid19 case: " + result.data.todayCase
@@ -83,7 +82,7 @@ const handleEvent = (event) => {
                 return client.replyMessage(event.replyToken, echo);
             });
             break;
-        case "covid19Predict":
+        case ">covid19Predict":
             return client.replyMessage(event.replyToken,
                 {
                     type:"flex",
@@ -182,9 +181,9 @@ const handleEvent = (event) => {
                     }
                 }
             );
-        case "report":
-            textReply = "report"
-            return client.replyMessage(event.replyToken, { type:'text', text: textReply });
+        // case "report":
+        //     textReply = "report"
+        //     return client.replyMessage(event.replyToken, { type:'text', text: textReply });
         default:
             textReply = "This command don't have in MaliCovid19"
             return client.replyMessage(event.replyToken, { type:'text', text: textReply });
