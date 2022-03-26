@@ -103,13 +103,6 @@ const handleEvent = (event) => {
                     }
                   ]
                 },
-                "hero": {
-                  "type": "image",
-                  "url": "https://vos.line-scdn.net/bot-designer-template-images/bot-designer-icon.png",
-                  "size": "full",
-                  "aspectRatio": "1.51:1",
-                  "aspectMode": "fit"
-                },
                 "body": {
                   "type": "box",
                   "layout": "vertical",
