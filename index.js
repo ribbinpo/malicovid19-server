@@ -61,7 +61,8 @@ app.post('/callback',line.middleware(config),(req, res) => {
 const forecast = (result) =>{
   const name = "FORECAST 7 DAYS IN THE FUTURE"
   let content = []
-  let num = result.length
+  let num = result.length-7
+  result = result.slice(num)
   for(let i=0;i<1; i++){
     content.push({
         "type": "box",
@@ -69,14 +70,14 @@ const forecast = (result) =>{
         "contents": [
           {
             "type": "text",
-            "text": "Date: 27/03/2022",
+            "text": result[i].date,
             "size": "sm",
             "gravity": "top",
             "contents": []
           },
           {
             "type": "text",
-            "text": "123 Cases",
+            "text": result[i].foretune+" Cases",
             "size": "sm",
             "color": "#000000FF",
             "gravity": "bottom",
