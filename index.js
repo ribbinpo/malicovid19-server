@@ -64,7 +64,7 @@ function forecast(result,day){
   let num = result.length-7
   result = result.slice(num)
   console.log(result)
-  for(let i=0; i<3; i++){
+  for(let i=0; i<5; i++){
     content.push({
         "type": "box",
         "layout": "horizontal",
