@@ -59,7 +59,7 @@ app.post('/callback',line.middleware(config),(req, res) => {
 });
 //Function create forecast bubble response in Line
 function forecast(result,day){
-  let name = "FORECAST "+ day +" DAYS IN THE FUTURE"
+  let name = "FORECAST "+ day.toString() +" DAYS IN THE FUTURE"
   let content = []
   let num = result.length-7
   result = result.slice(num)
