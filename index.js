@@ -78,7 +78,7 @@ function forecast(result,day){
           },
           {
             "type": "text",
-            "text": result[i].foretune+" Cases",
+            "text": (result[i].foretune).toString()+" Cases",
             "size": "sm",
             "color": "#000000FF",
             "gravity": "bottom",
