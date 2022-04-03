@@ -315,16 +315,17 @@ const handleEvent = (event) => {
             }
             return client.replyMessage(event.replyToken, echos);
           });
-        case ">predict5":
-          axios.get("/get_predict").then((result)=>{
-            const predict5 = forecast(result.data.data,5)
-            return client.replyMessage(event.replyToken, predict5);
-          });
-        case ">predict7":
-          axios.get("/get_predict").then((result)=>{
-            const predict7 = forecast(result.data.data,7)
-            return client.replyMessage(event.replyToken, predict7);
-          });
+          break;
+        // case ">predict5":
+        //   axios.get("/get_predict").then((result)=>{
+        //     const predict5 = forecast(result.data.data,5)
+        //     return client.replyMessage(event.replyToken, predict5);
+        //   });
+        // case ">predict7":
+        //   axios.get("/get_predict").then((result)=>{
+        //     const predict7 = forecast(result.data.data,7)
+        //     return client.replyMessage(event.replyToken, predict7);
+        //   });
         case ">predictAll":
           //
         default:
