@@ -58,8 +58,8 @@ app.post('/callback',line.middleware(config),(req, res) => {
     });
 });
 //Function create forecast bubble response in Line
-const forecast = (result,day) =>{
-  const name = "FORECAST "+ day +" DAYS IN THE FUTURE"
+function forecast(result,day){
+  let name = "FORECAST "+ day +" DAYS IN THE FUTURE"
   let content = []
   let num = result.length-7
   result = result.slice(num)
@@ -91,7 +91,7 @@ const forecast = (result,day) =>{
     })
   }
   content.pop()
-  const echos = {
+  let echos = {
     type:"flex",
     altText: "Forecast covid19",
     contents:{
