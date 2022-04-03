@@ -247,8 +247,8 @@ const handleEvent = (event) => {
         //     return client.replyMessage(event.replyToken, { type:'text', text: textReply });
         case ">predict1":
           axios.get("/get_predict").then((result)=>{
-            console.log(result.data)
-            return client.replyMessage(event.replyToken, forecast(result.data));
+            console.log(result.data.data)
+            return client.replyMessage(event.replyToken, forecast(result.data.data));
           });
         case ">predict3":
           //
