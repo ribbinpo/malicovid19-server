@@ -198,8 +198,8 @@ const handleEvent = (event) => {
                                   "type": "button",
                                   "action": {
                                     "type": "message",
-                                    "label": "1 day",
-                                    "text": ">predict1"
+                                    "label": "3 days",
+                                    "text": ">predict3"
                                   },
                                   "color": "#30D591",
                                   "style": "primary"
@@ -208,8 +208,8 @@ const handleEvent = (event) => {
                                   "type": "button",
                                   "action": {
                                     "type": "message",
-                                    "label": "3 days",
-                                    "text": ">predict3"
+                                    "label": "5 days",
+                                    "text": ">predict5"
                                   },
                                   "color": "#30D55A",
                                   "style": "primary"
