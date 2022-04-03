@@ -91,7 +91,7 @@ const forecast = (result,day) =>{
     })
   }
   content.pop()
-  const echo = {
+  const echos = {
     type:"flex",
     altText: "Forecast covid19",
     contents:{
@@ -119,7 +119,7 @@ const forecast = (result,day) =>{
       }
     }
   }
-  return echo
+  return echos
 }
 
 // event handler
@@ -199,7 +199,7 @@ const handleEvent = (event) => {
                                   "type": "button",
                                   "action": {
                                     "type": "message",
-                                    "label": "3 days",
+                                    "label": "3days",
                                     "text": ">predict3"
                                   },
                                   "color": "#30D591",
@@ -209,7 +209,7 @@ const handleEvent = (event) => {
                                   "type": "button",
                                   "action": {
                                     "type": "message",
-                                    "label": "5 days",
+                                    "label": "5days",
                                     "text": ">predict5"
                                   },
                                   "color": "#30D55A",
@@ -219,7 +219,7 @@ const handleEvent = (event) => {
                                   "type": "button",
                                   "action": {
                                     "type": "message",
-                                    "label": "7 days",
+                                    "label": "7days",
                                     "text": ">predict7"
                                   },
                                   "color": "#30D5C8",
