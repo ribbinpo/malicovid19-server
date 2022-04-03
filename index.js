@@ -251,8 +251,71 @@ const handleEvent = (event) => {
         //     return client.replyMessage(event.replyToken, { type:'text', text: textReply });
         case ">predict3":
           axios.get("/get_predict").then((result)=>{
-            const predict3 = forecast(result.data.data,3)
-            return client.replyMessage(event.replyToken, predict3);
+            // const predict3 = forecast(result.data.data,3)
+            let day = 3
+            result = result.data.data
+            let name = "FORECAST "+ day.toString() +" DAYS IN THE FUTURE"
+            let content = []
+            let num = result.length-7
+            let echos = {}
+            result = result.slice(num)
+            console.log(result)
+            for(let i=0; i<5; i++){
+              content.push({
+                  "type": "box",
+                  "layout": "horizontal",
+                  "contents": [
+                    {
+                      "type": "text",
+                      "text": result[i].date,
+                      "size": "sm",
+                      "gravity": "top",
+                      "contents": []
+                    },
+                    {
+                      "type": "text",
+                      "text": (result[i].foretune).toString()+" Cases",
+                      "size": "sm",
+                      "color": "#000000FF",
+                      "gravity": "bottom",
+                      "contents": []
+                    }
+                  ]
+              })
+              content.push({
+                "type": "separator"
+              })
+            }
+            content.pop()
+            echos = {
+              type:"flex",
+              altText: "Forecast covid19",
+              contents:{
+                "type": "bubble",
+                "direction": "ltr",
+                "header": {
+                  "type": "box",
+                  "layout": "horizontal",
+                  "contents": [
+                    {
+                      "type": "text",
+                      "text": name,
+                      "weight": "bold",
+                      "size": "sm",
+                      "color": "#AAAAAA",
+                      "contents": []
+                    }
+                  ]
+                },
+                "body": {
+                  "type": "box",
+                  "layout": "vertical",
+                  "spacing": "lg",
+                  "contents": content
+                }
+              }
+            }
+            return client.replyMessage(event.replyToken, echos);
           });
         case ">predict5":
           axios.get("/get_predict").then((result)=>{
