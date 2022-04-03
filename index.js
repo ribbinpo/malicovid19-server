@@ -64,7 +64,7 @@ function forecast(result,day){
   let num = result.length-7
   result = result.slice(num)
   console.log(result)
-  for(let i=0; i<day; i++){
+  for(let i=0; i<3; i++){
     content.push({
         "type": "box",
         "layout": "horizontal",
@@ -250,17 +250,14 @@ const handleEvent = (event) => {
         //     return client.replyMessage(event.replyToken, { type:'text', text: textReply });
         case ">predict3":
           axios.get("/get_predict").then((result)=>{
-            console.log(result.data.data)
             return client.replyMessage(event.replyToken, forecast(result.data.data,3));
           });
         case ">predict5":
           axios.get("/get_predict").then((result)=>{
-            console.log(result.data.data)
             return client.replyMessage(event.replyToken, forecast(result.data.data,5));
           });
         case ">predict7":
           axios.get("/get_predict").then((result)=>{
-            console.log(result.data.data)
             return client.replyMessage(event.replyToken, forecast(result.data.data,7));
           });
         case ">predictAll":
