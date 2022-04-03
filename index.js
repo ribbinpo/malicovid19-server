@@ -61,7 +61,8 @@ app.post('/callback',line.middleware(config),(req, res) => {
 const forecast = (result) =>{
   const name = "FORECAST 7 DAYS IN THE FUTURE"
   let content = []
-  for(let i=0;i<result.length; i++){
+  num = result.length
+  for(let i=0;i<1; i++){
     content.push({
         "type": "box",
         "layout": "horizontal",
