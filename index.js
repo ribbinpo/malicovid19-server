@@ -62,6 +62,7 @@ function forecast(result,day){
   let name = "FORECAST "+ day.toString() +" DAYS IN THE FUTURE"
   let content = []
   let num = result.length-7
+  let echos = {}
   result = result.slice(num)
   console.log(result)
   for(let i=0; i<5; i++){
@@ -91,7 +92,7 @@ function forecast(result,day){
     })
   }
   content.pop()
-  let echos = {
+  echos = {
     type:"flex",
     altText: "Forecast covid19",
     contents:{
@@ -250,15 +251,18 @@ const handleEvent = (event) => {
         //     return client.replyMessage(event.replyToken, { type:'text', text: textReply });
         case ">predict3":
           axios.get("/get_predict").then((result)=>{
-            return client.replyMessage(event.replyToken, forecast(result.data.data,3));
+            const predict3 = forecast(result.data.data,3)
+            return client.replyMessage(event.replyToken, predict3);
           });
         case ">predict5":
           axios.get("/get_predict").then((result)=>{
-            return client.replyMessage(event.replyToken, forecast(result.data.data,5));
+            const predict5 = forecast(result.data.data,5)
+            return client.replyMessage(event.replyToken, predict5);
           });
         case ">predict7":
           axios.get("/get_predict").then((result)=>{
-            return client.replyMessage(event.replyToken, forecast(result.data.data,7));
+            const predict7 = forecast(result.data.data,7)
+            return client.replyMessage(event.replyToken, predict7);
           });
         case ">predictAll":
           //
