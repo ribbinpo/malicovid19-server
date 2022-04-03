@@ -59,13 +59,12 @@ app.post('/callback',line.middleware(config),(req, res) => {
 });
 //Function create forecast bubble response in Line
 function forecast(result,day){
-  let name = "FORECAST "+ day.toString() +" DAYS IN THE FUTURE"
+  const name = "FORECAST "+ day.toString() +" DAYS IN THE FUTURE"
   let content = []
-  let num = result.length-7
-  let echos = {}
+  const num = result.length-7
   result = result.slice(num)
   console.log(result)
-  for(let i=0; i<5; i++){
+  for(let i=0; i<day; i++){
     content.push({
         "type": "box",
         "layout": "horizontal",
@@ -92,7 +91,7 @@ function forecast(result,day){
     })
   }
   content.pop()
-  echos = {
+  const echos = {
     type:"flex",
     altText: "Forecast covid19",
     contents:{
@@ -251,83 +250,22 @@ const handleEvent = (event) => {
         //     return client.replyMessage(event.replyToken, { type:'text', text: textReply });
         case ">predict3":
           axios.get("/get_predict").then((result)=>{
-            // const predict3 = forecast(result.data.data,3)
-            let day = 3
-            result = result.data.data
-            const name = "FORECAST "+ day.toString() +" DAYS IN THE FUTURE"
-            let content = []
-            const num = result.length-7
-            result = result.slice(num)
-            for(let i=0; i<3; i++){
-              content.push({
-                  "type": "box",
-                  "layout": "horizontal",
-                  "contents": [
-                    {
-                      "type": "text",
-                      "text": result[i].date,
-                      "size": "sm",
-                      "gravity": "top",
-                      "contents": []
-                    },
-                    {
-                      "type": "text",
-                      "text": (result[i].foretune).toString()+" Cases",
-                      "size": "sm",
-                      "color": "#000000FF",
-                      "gravity": "bottom",
-                      "contents": []
-                    }
-                  ]
-              })
-              content.push({
-                "type": "separator"
-              })
-            }
-            content.pop()
-            let echos = {
-              type:"flex",
-              altText: "Forecast covid19",
-              contents:{
-                "type": "bubble",
-                "direction": "ltr",
-                "header": {
-                  "type": "box",
-                  "layout": "horizontal",
-                  "contents": [
-                    {
-                      "type": "text",
-                      "text": name,
-                      "weight": "bold",
-                      "size": "sm",
-                      "color": "#AAAAAA",
-                      "contents": []
-                    }
-                  ]
-                },
-                "body": {
-                  "type": "box",
-                  "layout": "vertical",
-                  "spacing": "lg",
-                  "contents": content
-                }
-              }
-            }
-            return client.replyMessage(event.replyToken, echos);
+            return client.replyMessage(event.replyToken, forecast(result.data.data,3));
           });
           break;
-        // case ">predict5":
-        //   axios.get("/get_predict").then((result)=>{
-        //     const predict5 = forecast(result.data.data,5)
-        //     return client.replyMessage(event.replyToken, predict5);
-        //   });
-        // case ">predict7":
-        //   axios.get("/get_predict").then((result)=>{
-        //     const predict7 = forecast(result.data.data,7)
-        //     return client.replyMessage(event.replyToken, predict7);
-        //   });
+        case ">predict5":
+          axios.get("/get_predict").then((result)=>{
+            return client.replyMessage(event.replyToken, forecast(result.data.data,5));
+          });
+          break
+        case ">predict7":
+          axios.get("/get_predict").then((result)=>{
+            return client.replyMessage(event.replyToken, forecast(result.data.data,7));
+          });
+          break
         case ">predictAll":
           //
+          break
         default:
             textReply = "This command don't have in MaliCovid19"
             return client.replyMessage(event.replyToken, { type:'text', text: textReply });
