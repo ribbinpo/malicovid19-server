@@ -57,6 +57,67 @@ app.post('/callback',line.middleware(config),(req, res) => {
       res.status(500).end();
     });
 });
+//Function create forecast bubble response in Line
+const forecast = (result) =>{
+  const name = "FORECAST 7 DAYS IN THE FUTURE"
+  let content = []
+  for(let i=0;i<result.length; i++){
+    content.push({
+        "type": "box",
+        "layout": "horizontal",
+        "contents": [
+          {
+            "type": "text",
+            "text": "Date: 27/03/2022",
+            "size": "sm",
+            "gravity": "top",
+            "contents": []
+          },
+          {
+            "type": "text",
+            "text": "123 Cases",
+            "size": "sm",
+            "color": "#000000FF",
+            "gravity": "bottom",
+            "contents": []
+          }
+        ]
+    })
+    content.push({
+      "type": "separator"
+    })
+  }
+  content.pop()
+  const echo = {
+    type:"flex",
+    altText: "Forecast covid19",
+    contents:{
+      "type": "bubble",
+      "direction": "ltr",
+      "header": {
+        "type": "box",
+        "layout": "horizontal",
+        "contents": [
+          {
+            "type": "text",
+            "text": name,
+            "weight": "bold",
+            "size": "sm",
+            "color": "#AAAAAA",
+            "contents": []
+          }
+        ]
+      },
+      "body": {
+        "type": "box",
+        "layout": "vertical",
+        "spacing": "lg",
+        "contents": content
+      }
+    }
+  }
+  return echo
+}
 
 // event handler
 const handleEvent = (event) => {
@@ -74,9 +135,9 @@ const handleEvent = (event) => {
         case ">covid19Today":
             axios.get("/get_predict/v2").then((result)=>{
                 textReply = "Date: " + result.data.date.slice(-8,-7)[0]
-                textReply += "\nnew covid19 case: " + result.data.todayCase
-                textReply += "\ntotal covid19 case: " + result.data.totalCase
-                textReply += "\nexpected covid19 case tomorrow: " + result.data.PredictTommorrow
+                textReply += "\nNew covid19 (cases): " + result.data.todayCase
+                textReply += "\nTotal covid19 (cases): " + result.data.totalCase
+                textReply += "\nForecast covid19 (cases): " + result.data.PredictTommorrow
                 let echo = { type:'text', text: textReply }
                 // Use reply API
                 return client.replyMessage(event.replyToken, echo);
@@ -184,6 +245,16 @@ const handleEvent = (event) => {
         // case "report":
         //     textReply = "report"
         //     return client.replyMessage(event.replyToken, { type:'text', text: textReply });
+        case ">predict1":
+          axios.get("/get_predict").then((result)=>{
+            return client.replyMessage(event.replyToken, forecast(result.body));
+          });
+        case ">predict3":
+          //
+        case ">predict5":
+          //
+        case ">predictAll":
+          //
         default:
             textReply = "This command don't have in MaliCovid19"
             return client.replyMessage(event.replyToken, { type:'text', text: textReply });
