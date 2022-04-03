@@ -254,13 +254,11 @@ const handleEvent = (event) => {
             // const predict3 = forecast(result.data.data,3)
             let day = 3
             result = result.data.data
-            let name = "FORECAST "+ day.toString() +" DAYS IN THE FUTURE"
+            const name = "FORECAST "+ day.toString() +" DAYS IN THE FUTURE"
             let content = []
-            let num = result.length-7
-            let echos = {}
+            const num = result.length-7
             result = result.slice(num)
-            console.log(result)
-            for(let i=0; i<5; i++){
+            for(let i=0; i<3; i++){
               content.push({
                   "type": "box",
                   "layout": "horizontal",
@@ -287,7 +285,7 @@ const handleEvent = (event) => {
               })
             }
             content.pop()
-            echos = {
+            let echos = {
               type:"flex",
               altText: "Forecast covid19",
               contents:{
