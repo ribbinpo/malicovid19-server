@@ -273,17 +273,17 @@ const handleEvent = (event) => {
         //     textReply = "report"
         //     return client.replyMessage(event.replyToken, { type:'text', text: textReply });
         case ">predict3":
-          axios.get("/get_predict").then((result)=>{
+          axios.get("/api/predict").then((result)=>{
             return client.replyMessage(event.replyToken, forecast(result.data.data,3));
           });
           break;
         case ">predict5":
-          axios.get("/get_predict").then((result)=>{
+          axios.get("/api/predict").then((result)=>{
             return client.replyMessage(event.replyToken, forecast(result.data.data,5));
           });
           break
         case ">predict7":
-          axios.get("/get_predict").then((result)=>{
+          axios.get("/api/predict").then((result)=>{
             return client.replyMessage(event.replyToken, forecast(result.data.data,7));
           });
           break
