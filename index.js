@@ -142,10 +142,10 @@ const handleEvent = (event) => {
     switch(message){
         case ">covid19Today":
             axios.get("/api/predict").then((result)=>{
-                textReply = "Date: " + result.data.date.slice(-8,-7)[0]
-                textReply += "\nNew covid19 (cases): " + result.data.todayCase
-                textReply += "\nTotal covid19 (cases): " + result.data.totalCase
-                textReply += "\nForecast covid19 (cases): " + result.data.predictTomorrow
+                textReply = "Date: " + result.date
+                textReply += "\nNew covid19 (cases): " + result.todayCase
+                textReply += "\nTotal covid19 (cases): " + result.totalCase
+                textReply += "\nForecast covid19 (cases): " + result.predictTomorrow
                 let echo = { type:'text', text: textReply }
                 // Use reply API
                 return client.replyMessage(event.replyToken, echo);
