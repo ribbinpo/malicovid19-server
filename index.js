@@ -14,7 +14,9 @@ const config = {
 //     channelAccessToken: process.env.CHANNEL_ACCESS_TOKEN,
 //     channelSecret: process.env.CHANNEL_SECRET,
 // };
-axios.defaults.baseURL = 'https://line-pcord.herokuapp.com/';
+//http://157.245.53.86/api/predict
+axios.defaults.baseURL = "http://157.245.53.86/"
+// axios.defaults.baseURL = 'https://line-pcord.herokuapp.com/';
 // axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;
 // axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 
@@ -63,7 +65,7 @@ function forecast(result,day){
   let content = []
   const num = result.length-7
   result = result.slice(num)
-  console.log(result)
+  // console.log(result) //Debug -result of forecast
   for(let i=0; i<day; i++){
     content.push({
         "type": "box",
@@ -132,15 +134,18 @@ const handleEvent = (event) => {
     // covid19Predict
     // report-menu
     // const echo = { type: 'text', text: event.message.text };
+
+    //get_predict/v2
+
     const message = event.message.text
     let textReply = ""
     switch(message){
         case ">covid19Today":
-            axios.get("/get_predict/v2").then((result)=>{
+            axios.get("/api/predict").then((result)=>{
                 textReply = "Date: " + result.data.date.slice(-8,-7)[0]
                 textReply += "\nNew covid19 (cases): " + result.data.todayCase
                 textReply += "\nTotal covid19 (cases): " + result.data.totalCase
-                textReply += "\nForecast covid19 (cases): " + result.data.PredictTommorrow
+                textReply += "\nForecast covid19 (cases): " + result.data.predictTomorrow
                 let echo = { type:'text', text: textReply }
                 // Use reply API
                 return client.replyMessage(event.replyToken, echo);
