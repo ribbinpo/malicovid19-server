@@ -30,6 +30,23 @@ app.get("/",(req,res)=>{
     console.log("path / success")
     res.sendStatus(200)
 })
+
+// app.get("/test",(req,res)=>{
+//   axios.get("/api/predict").then((result)=>{
+//     let day=7
+//     const name = "FORECAST "+ day.toString() +" DAYS IN THE FUTURE"
+//     let content = []
+//     const num = result.data.data.date.length-7
+//     let date = result.data.data.date.slice(num)
+//     let real = result.data.data.real.slice(num)
+//     let forecast = result.data.data.forecast.slice(num)
+//     for(let i=0; i<day; i++){
+
+//     }
+//     res.send(day)
+//   });
+// })
+
 //Test
 // app.get("/get_data",(req,res)=>{
 //     axios.get("/get_predict/v2").then((result)=>{
@@ -63,8 +80,10 @@ app.post('/callback',line.middleware(config),(req, res) => {
 function forecast(result,day){
   const name = "FORECAST "+ day.toString() +" DAYS IN THE FUTURE"
   let content = []
-  const num = result.length-7
-  result = result.slice(num)
+  const num = result.date.length-7
+  let date = result.date.slice(num)
+  // let real = result.data.data.real.slice(num)
+  let forecast = result.forecast.slice(num)
   // console.log(result) //Debug -result of forecast
   for(let i=0; i<day; i++){
     content.push({
@@ -73,14 +92,14 @@ function forecast(result,day){
         "contents": [
           {
             "type": "text",
-            "text": result[i].date,
+            "text": date[i],
             "size": "sm",
             "gravity": "top",
             "contents": []
           },
           {
             "type": "text",
-            "text": (result[i].foretune).toString()+" Cases",
+            "text": (forecast[i]).toString()+" Cases",
             "size": "sm",
             "color": "#000000FF",
             "gravity": "bottom",
@@ -142,10 +161,10 @@ const handleEvent = (event) => {
     switch(message){
         case ">covid19Today":
             axios.get("/api/predict").then((result)=>{
-                textReply = "Date: " + result.date
-                textReply += "\nNew covid19 (cases): " + result.todayCase
-                textReply += "\nTotal covid19 (cases): " + result.totalCase
-                textReply += "\nForecast covid19 (cases): " + result.predictTomorrow
+                textReply = "Date: " + result.data.date
+                textReply += "\nNew covid19 (cases): " + result.data.todayCase
+                textReply += "\nTotal covid19 (cases): " + result.data.totalCase
+                textReply += "\nForecast covid19 (cases): " + result.data.predictTomorrow
                 let echo = { type:'text', text: textReply }
                 // Use reply API
                 return client.replyMessage(event.replyToken, echo);
