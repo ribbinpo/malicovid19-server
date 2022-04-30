@@ -15,7 +15,7 @@ const config = {
 //     channelSecret: process.env.CHANNEL_SECRET,
 // };
 //http://157.245.53.86/api/predict
-axios.defaults.baseURL = "http://157.245.53.86/"
+axios.defaults.baseURL = "http://159.65.2.88/"
 // axios.defaults.baseURL = 'https://line-pcord.herokuapp.com/';
 // axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;
 // axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
